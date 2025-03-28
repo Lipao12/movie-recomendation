@@ -15,20 +15,20 @@ class RecoController:
             raise ValueError(f"Erro ao carregar CSV: {str(e)}")
 
         self.mood_mapping = {
-                'Feliz': ['Comedy', 'Family', 'Animation'],
-                'Triste': ['Drama', 'Romance'],
-                'Romântico': ['Romance', 'Drama', 'Music'],
-                'Empolgante': ['Action', 'Adventure', 'Thriller'],
-                'Assustador': ['Horror', 'Thriller', 'Mystery'],
-                'Aventureiro': ['Adventure', 'Fantasy', 'Science Fiction'],
-                'Curioso': ['Documentary', 'History', 'Mystery'],
-                'Tenso': ['Crime', 'Thriller', 'Mystery'],
-                'Reflexivo': ['Drama', 'History', 'War'],
-                'Nostálgico': ['Music', 'Family', 'Romance'],
-                'Relaxado': ['Comedy', 'Animation', 'Documentary'],
-                'Épico': ['War', 'History', 'Adventure', 'Western'],
-                'Intrigante': ['Foreign', 'Mystery', 'Documentary'],
-                'Leve': ['Comedy', 'Family', 'TV Movie']
+                'happy': ['Comedy', 'Family', 'Animation'],
+                'sad': ['Drama', 'Romance'],
+                'romantic': ['Romance', 'Drama', 'Music'],
+                'exciting': ['Action', 'Adventure', 'Thriller'],
+                'scary': ['Horror', 'Thriller', 'Mystery'],
+                'adventurous': ['Adventure', 'Fantasy', 'Science Fiction'],
+                'curious': ['Documentary', 'History', 'Mystery'],
+                'tense': ['Crime', 'Thriller', 'Mystery'],
+                'thoughtful': ['Drama', 'History', 'War'],
+                'nostalgic': ['Music', 'Family', 'Romance'],
+                'relaxed': ['Comedy', 'Animation', 'Documentary'],
+                'epic': ['War', 'History', 'Adventure', 'Western'],
+                'intriguing': ['Foreign', 'Mystery', 'Documentary'],
+                'light': ['Comedy', 'Family', 'TV Movie']
             }
         self.repository = repository
 
