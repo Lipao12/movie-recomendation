@@ -220,7 +220,7 @@ const MovieReco: React.FC = () => {
             </div>
           </div>
         ) : (
-          <p>😢</p>
+          <p>😢😢 {error} 😢😢</p>
         )}
       </div>
     </div>
