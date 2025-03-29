@@ -1,11 +1,14 @@
 from fastapi import APIRouter, HTTPException
 from fastapi.responses import JSONResponse
-import io
 
 router = APIRouter()
 
 from app.repository.repository import RecoRepository
 from app.controller.controller import RecoController
+
+@router.get("/")
+async def check():
+    return "Conected"
 
 @router.get("/movie_recommendation")
 async def create_reservation(mood, favorite_movie=None):
