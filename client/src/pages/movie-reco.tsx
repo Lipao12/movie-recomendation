@@ -32,7 +32,7 @@ const MovieReco: React.FC = () => {
 
   if (mood === "horny") {
     return (
-      <div className="min-h-screen">
+      <div>
         <header
           className="mb-8 text-center p-2 bg-gray-800 rounded-xl flex flex-row 
         justify-between items-center drop-shadow-2xl"
