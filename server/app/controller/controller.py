@@ -46,12 +46,18 @@ class RecoController:
                 sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
                 top_indices = [i[0] for i in sim_scores[1:6]]  # Top 5
 
+                filtered_movies['genres'] = filtered_movies['genres'].apply(lambda x: eval(x) if isinstance(x, str) else x)
+                filtered_movies['cast'] = filtered_movies['cast'].apply(lambda x: eval(x) if isinstance(x, str) else x)
+
                 dict_filtered_movies = filtered_movies[filtered_movies.index.isin(top_indices)].to_dict(orient='records')
+                
 
                 return {
                 "body": {"movies_related": dict_filtered_movies, },
                 "status_code": 200
                 } 
+            filtered_movies['genres'] = filtered_movies['genres'].apply(lambda x: eval(x) if isinstance(x, str) else x)
+            filtered_movies['cast'] = filtered_movies['cast'].apply(lambda x: eval(x) if isinstance(x, str) else x)
             
             dict_filtered_movies = filtered_movies.sort_values(by='weighted_rating', ascending=False).head(5).to_dict(orient='records')
             return {
