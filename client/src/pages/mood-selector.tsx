@@ -1,19 +1,29 @@
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useMoods } from "../assets/mood";
 import { Mood } from "../types";
 
 export const MoodSelector = () => {
+  const [selectedMood, setSelectedMood] = useState<string | null>(null);
   const { t } = useTranslation("mood_selector");
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const moods = useMoods();
 
   const navigate = useNavigate();
 
   const handleMoodSelect = async (mood: string) => {
     try {
+      setIsLoading(true);
+      setError(null);
+
       navigate("/movie/recommendation", { state: { mood } });
     } catch (error) {
       console.error("Erro:", error);
+      setError(error instanceof Error ? error.message : "Erro desconhecido");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -38,7 +48,7 @@ export const MoodSelector = () => {
             <button
               key={mood.key}
               onClick={() => handleMoodSelect(mood.key)}
-              className={` cursor-pointer p-4 rounded-lg transition-all duration-300 flex flex-col items-center justify-center h-18 w-full`}
+              className={` ${mood.colors} cursor-pointer p-4 rounded-lg transition-all duration-300 flex flex-col items-center justify-center h-18 w-full`}
             >
               <span className="text-3xl mb-2">{mood.emoji}</span>
               <span className="font-medium text-gray-800 uppercase">
