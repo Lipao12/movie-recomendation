@@ -1,29 +1,19 @@
-import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useMoods } from "../assets/mood";
 import { Mood } from "../types";
 
 export const MoodSelector = () => {
-  const [selectedMood, setSelectedMood] = useState<string | null>(null);
   const { t } = useTranslation("mood_selector");
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
   const moods = useMoods();
 
   const navigate = useNavigate();
 
   const handleMoodSelect = async (mood: string) => {
     try {
-      setIsLoading(true);
-      setError(null);
-
       navigate("/movie/recommendation", { state: { mood } });
     } catch (error) {
       console.error("Erro:", error);
-      setError(error instanceof Error ? error.message : "Erro desconhecido");
-    } finally {
-      setIsLoading(false);
     }
   };
 
