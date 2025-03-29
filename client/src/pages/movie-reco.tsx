@@ -162,6 +162,10 @@ const MovieReco: React.FC = () => {
               </span>
             )}
             <div className="bg-gray-800 p-4 rounded-xl">
+              <div className="w-full h-60 bg-gray-700 flex items-center justify-center text-center p-4 rounded-lg">
+                <p className="text-gray-300 text-sm">{t("thumb")}</p>
+              </div>
+
               <div className="movie-item bg-gray-800 text-white p-4 rounded-lg mb-4 space-y-3">
                 <h2 className="text-2xl font-bold">{movie.original_title}</h2>
                 <div className="flex flex-row space-x-2 items-center">
@@ -171,10 +175,10 @@ const MovieReco: React.FC = () => {
                   <div className="h-1 w-1 bg-white rounded-full" />
                   <h1>⭐ {movie.vote_average}/10</h1>
                 </div>
-                <div className="flex flex-row space-x-2">
+                <div className="flex flex-row items-center overflow-auto space-x-2">
                   {movie.genres.map((genre: string) => {
                     return (
-                      <div className="px-2 border-2 rounded-4xl border-amber-700 bg-transparent">
+                      <div className=" px-2 border-2 rounded-4xl border-amber-700 bg-transparent">
                         <span className="text-sm text-amber-700 font-bold">
                           {genre}
                         </span>

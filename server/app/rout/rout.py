@@ -20,7 +20,6 @@ async def create_reservation(mood, favorite_movie=None):
             "favorite_movie": favorite_movie
         }
         response = controller.getRecomendation(info)
-        print(response)
         return JSONResponse(
             content=response['body'],
             status_code=response['status_code']

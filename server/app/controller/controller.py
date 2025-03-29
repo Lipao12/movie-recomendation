@@ -59,7 +59,7 @@ class RecoController:
             filtered_movies['genres'] = filtered_movies['genres'].apply(lambda x: eval(x) if isinstance(x, str) else x)
             filtered_movies['cast'] = filtered_movies['cast'].apply(lambda x: eval(x) if isinstance(x, str) else x)
             
-            dict_filtered_movies = filtered_movies.sort_values(by='weighted_rating', ascending=False).head(5).to_dict(orient='records')
+            dict_filtered_movies = filtered_movies.sort_values(by='weighted_rating', ascending=False).head(80).to_dict(orient='records')
             return {
                 "body": {"movies_related": dict_filtered_movies },
                 "status_code": 200
