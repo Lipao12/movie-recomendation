@@ -86,7 +86,9 @@ const MovieReco: React.FC = () => {
         setIsLoading(true);
         setError(null);
 
-        const url = `http://127.0.0.1:8000/movie_recommendation?mood=${mood}`;
+        const url = `${
+          import.meta.env.VITE_API_URL
+        }/movie_recommendation?mood=${mood}`;
 
         const response = await fetch(url, {
           method: "GET",

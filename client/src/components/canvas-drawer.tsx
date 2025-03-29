@@ -3,6 +3,7 @@ import { useRef, useState } from "react";
 const Canvas = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isDrawing, setIsDrawing] = useState(false);
+  const ctxRef = useRef<CanvasRenderingContext2D | null>(null);
 
   const startDrawing = (event: React.MouseEvent<HTMLCanvasElement>) => {
     const canvas = canvasRef.current;
@@ -10,6 +11,8 @@ const Canvas = () => {
 
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
+
+    ctxRef.current = ctx;
 
     ctx.strokeStyle = "white";
     ctx.lineWidth = 3;
@@ -37,17 +40,37 @@ const Canvas = () => {
     setIsDrawing(false);
   };
 
+  const clearCanvas = () => {
+    if (!canvasRef.current || !ctxRef.current) return;
+    ctxRef.current.clearRect(
+      0,
+      0,
+      canvasRef.current.width,
+      canvasRef.current.height
+    );
+  };
+
   return (
     <div className="canvas-actual">
       <canvas
         ref={canvasRef}
         className="canvas-actual"
         width={window.innerWidth >= 450 ? "840" : "260"} //md:840
-        height={window.innerWidth >= 450 ? "185" : "150"} //md:208
+        height={window.innerWidth >= 450 ? "165" : "130"} //md:208
         onMouseDown={startDrawing}
         onMouseMove={draw}
         onMouseUp={stopDrawing}
+        onMouseLeave={stopDrawing}
+        onTouchEnd={stopDrawing}
       />
+      <div className="flex justify-end">
+        <button
+          className="h-5 w-8 drop-shadow-md cursor-pointer bg-red-600 rounded-2xl text-sm"
+          onClick={clearCanvas}
+        >
+          🗑️
+        </button>
+      </div>
     </div>
   );
 };
