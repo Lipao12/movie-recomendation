@@ -55,11 +55,11 @@ export const useMoods = (): Mood[] => {
       genres: ["Documentary", "History", "Mystery"],
     },
     {
-      key: "excited",
-      name: t("excited"),
+      key: "horny",
+      name: t("horny"),
       emoji: "🤤",
       colors: "bg-red-400 hover:bg-red-500",
-      genres: ["Documentary", "History", "Mystery"],
+      genres: [""],
     },
     {
       key: "tense",
