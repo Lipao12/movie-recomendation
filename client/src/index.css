@@ -7,3 +7,7 @@
   .delay-200 {
     animation-delay: 200ms;
   }
+
+  .canvas-actual {
+    cursor: url("/cursor-pencil.cur"), crosshair;
+  }

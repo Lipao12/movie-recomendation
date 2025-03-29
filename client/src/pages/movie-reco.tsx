@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useMoods } from "../assets/mood";
+import Canvas from "../components/canvas-drawer";
 import { Loading } from "../components/loading";
 import { Movie } from "../types";
 
@@ -162,7 +163,8 @@ const MovieReco: React.FC = () => {
               </span>
             )}
             <div className="bg-gray-800 p-4 rounded-xl">
-              <div className="w-full h-60 bg-gray-700 flex items-center justify-center text-center p-4 rounded-lg">
+              <div className="w-full h-60 bg-gray-700 flex flex-col items-center justify-center text-center p-4 rounded-lg">
+                <Canvas />
                 <p className="text-gray-300 text-sm">{t("thumb")}</p>
               </div>
 
