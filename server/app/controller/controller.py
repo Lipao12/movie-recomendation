@@ -2,6 +2,7 @@ import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from pathlib import Path
+import numpy as np
 
 class RecoController:
     def __init__(self, repository):
@@ -58,8 +59,19 @@ class RecoController:
                 } 
             filtered_movies['genres'] = filtered_movies['genres'].apply(lambda x: eval(x) if isinstance(x, str) else x)
             filtered_movies['cast'] = filtered_movies['cast'].apply(lambda x: eval(x) if isinstance(x, str) else x)
-            
-            dict_filtered_movies = filtered_movies.sort_values(by='weighted_rating', ascending=False).head(80).to_dict(orient='records')
+
+            # DEixar um pouco mais aleatório
+            sorted_movies = filtered_movies.sort_values(by='weighted_rating', ascending=False)
+            weights = 1 / np.log1p(np.arange(1, len(sorted_movies)+1))
+            weights = weights / weights.sum()
+            selected_indices = np.random.choice(
+                                                len(sorted_movies), 
+                                                size=min(80, len(sorted_movies)), 
+                                                replace=False, 
+                                                p=weights
+                                            )
+            dict_filtered_movies = sorted_movies.iloc[selected_indices].to_dict(orient='records')
+            #dict_filtered_movies = filtered_movies.sort_values(by='weighted_rating', ascending=False).head(80).to_dict(orient='records')
             return {
                 "body": {"movies_related": dict_filtered_movies },
                 "status_code": 200
